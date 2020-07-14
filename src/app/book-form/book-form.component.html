@@ -1,0 +1,64 @@
+<h3>{{isEditing?"Edit":"New"}} Book</h3>
+
+<div class="col-sm-8">
+    <form [formGroup]="bookForm" (ngSubmit)="save()">
+        <div class="form-group">
+            <label>Book Code</label>
+            <input type="number" class="form-control" formControlName="bcode" />
+            <div *ngIf="f.bcode.invalid && (f.bcode.touched || f.bcode.dirty)" class="alert alert-danger">
+                <span>Book Code is Mandatory</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Book Title</label>
+            <input type="text" class="form-control" formControlName="title" />
+            <div *ngIf="f.title.invalid && (f.title.touched || f.title.dirty)" class="alert alert-danger">
+                <span *ngIf="f.title.errors.required">Book Title is Mandatory</span>
+                <span *ngIf="f.title.errors.minlength">Book Title must be of 5 characters</span>
+                <span *ngIf="f.title.errors.maxlength">Book Title must not be greater than 45 characters</span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Book Price</label>
+            <input type="number" class="form-control" formControlName="price" minValue="100" maxValue="2500" />
+            <div *ngIf="f.price.invalid && (f.price.touched || f.price.dirty)" class="alert alert-danger">
+                <span *ngIf="f.price.errors.required">Book Price is Mandatory</span>
+                <span *ngIf="f.price.errors.minValue">Book Price should be minimum Rs.100</span>
+                <span *ngIf="f.price.errors.maxValue">Book price must not be greater than Rs.2500</span>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Published Date</label>
+            <input type="date" class="form-control" formControlName="publishedDate" />
+            <div *ngIf="f.publishedDate.invalid && (f.publishedDate.touched || f.publishedDate.dirty)"
+                class="alert alert-danger">
+
+                <span *ngIf="f.publishedDate.errors.required">Book date is Mandatory</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Subject</label>
+            <select type="text" class="form-control" formControlName="subject">
+                <option value="">---------SELECT--------</option>
+                <option *ngFor="let s of subjects" [value]="s">{{s}}</option>
+            </select>
+        </div>
+
+
+        <div class="text-right">
+            <button class="btn btn-primary">
+                <fa-icon [icon]="saveIcon"></fa-icon>
+                SAVE
+            </button>
+
+        </div>
+
+    </form>
+</div>

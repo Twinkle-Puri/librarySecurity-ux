@@ -1,0 +1,12 @@
+<header class="mb-2">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" routerLink="/home">{{brand}}</a>
+        <ul class="navbar-nav">
+            <li class="nav-item active" *ngFor="let link of links">
+                <a class="nav-link" [routerLink]="link.path">
+                  <fa-icon [icon]="link.icon"></fa-icon>  {{link.linkText}}</a>
+            </li>      
+
+        </ul>
+      </nav>
+</header>

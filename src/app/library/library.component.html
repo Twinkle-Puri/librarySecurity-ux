@@ -1,0 +1,36 @@
+<h3>Library</h3>
+
+<div class="alert alert-danger" *ngIf ="!(errMsg || books)">
+    <strong>Loading Data! please wait.........!</strong>
+</div>
+
+<div class="alert alert-danger" *ngIf="errMsg">
+    <strong>{{errMsg}}</strong>
+</div>
+
+<table *ngIf="books" class="table table-bordered table-stripped table-hover" style="cursor: pointer;">
+    <thead>
+        <th>Book Code</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Subject</th>
+        <th>Published Date</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let book of books" (click)="details(book.bcode)">
+            <td>{{book.bcode}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.subject}}</td>
+            <td>{{book.publishedDate}}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" routerLink="/editBook/{{book.bcode}}">
+                    <fa-icon [icon] ="editIcon"></fa-icon>  EDIT
+                </a>
+                <a class="btn btn-sm btn-primary" href="#" (click)="delete(book.bcode)">
+                    <fa-icon [icon]="deleteIcon"></fa-icon>DELETE</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+<h3>Sign In</h3>
+<div class="col-sm-3">
+    <div class="alert alert-warning" *ngIf="errMsg">
+        <strong>{{errMsg}}</strong>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+            <label>User Name:</label>
+            <input type="text" formControlName="userName" class="form-control"/>
+            <div class="alert alert-danger" *ngIf="f.userName.invalid && (f.userName.touched || f.userName.dirty)">
+                <strong>User name can not be left blank</strong>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" formControlName="password" class="form-control"/>
+            <div class="alert alert-danger" *ngIf="f.password.invalid && (f.password.touched || f.password.dirty)">
+                <strong>Password can not be left blank</strong>
+            </div>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary" [disabled]="loginForm.invalid">Sign In</button>
+        </div>
+    </form>
+    <div class="well well-primary text-center">
+        <a routerLink="/reg">
+            New User? Sign Up Here!
+        </a>        
+    </div>    
+</div>
